@@ -106,19 +106,37 @@ heart-disease-prediction/
 │       ├── heart-disease.README
 │       └── Index
 │
-├── src/                               # Model scripts
-│   └── 02_random_forest.py            # Member 2 — Random Forest ✅
+├── src/                               # Model scripts (one per member)
+│   ├── 01_logistic_regression.py      # Member 1 — Logistic Regression
+│   ├── 02_random_forest.py            # Member 2 — Random Forest ✅
+│   ├── 03_svm_classification.py       # Member 3 — Support Vector Machine
+│   └── 04_kmeans_clustering.py        # Member 4 — K-Means Clustering
 │
 ├── models/                            # Saved trained models
-│   └── random_forest_model.pkl        # Random Forest model ✅
+│   ├── logistic_regression_model.pkl  # Member 1 model
+│   ├── random_forest_model.pkl        # Member 2 model ✅
+│   ├── svm_model.pkl                  # Member 3 model
+│   └── kmeans_model.pkl               # Member 4 model
 │
-├── outputs/                           # Generated outputs
-│   └── random_forest/                 # Random Forest outputs ✅
-│       ├── feature_importance.png
-│       ├── confusion_matrix.png
-│       ├── roc_curve.png
-│       ├── cv_scores.png
-│       ├── top5_features_boxplot.png
+├── outputs/                           # Generated outputs per member
+│   ├── logistic_regression/           # Member 1 outputs
+│   │   ├── confusion_matrix.png
+│   │   ├── roc_curve.png
+│   │   └── summary_report.txt
+│   ├── random_forest/                 # Member 2 outputs ✅
+│   │   ├── feature_importance.png
+│   │   ├── confusion_matrix.png
+│   │   ├── roc_curve.png
+│   │   ├── cv_scores.png
+│   │   ├── top5_features_boxplot.png
+│   │   └── summary_report.txt
+│   ├── svm/                           # Member 3 outputs
+│   │   ├── confusion_matrix.png
+│   │   ├── roc_curve.png
+│   │   └── summary_report.txt
+│   └── kmeans/                        # Member 4 outputs
+│       ├── cluster_visualization.png
+│       ├── elbow_curve.png
 │       └── summary_report.txt
 │
 └── README.md
