@@ -66,7 +66,7 @@ This is a machine learning project that predicts heart disease risk and segments
 - **Purpose**: Classification with multiple kernel options
 - **Kernels**: Linear, RBF, Polynomial
 - **Key Task**: Find optimal decision boundaries
-- **File**: `src/03_svm_classification.py`
+- **File**: `src/03_svm_classification.ipynb`
 
 ### 4. **K-Means Clustering** - Member 4
 - **Type**: Unsupervised Learning
