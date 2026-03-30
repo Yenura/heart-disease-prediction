@@ -6,7 +6,7 @@ This is a machine learning project that predicts heart disease risk and segments
 
 **Dataset**: UCI Heart Disease Dataset (Real-world clinical data)
 
----check 
+---check
 
 ## 🎯 Project Objectives
 
@@ -26,27 +26,29 @@ This is a machine learning project that predicts heart disease risk and segments
 - **Missing Values**: Marked as -9.0
 
 ### Key Features
-| Feature | Description |
-|---------|-------------|
-| age | Age in years |
-| sex | Gender (1=male, 0=female) |
-| cp | Chest pain type (1-4) |
-| trestbps | Resting blood pressure (mm Hg) |
-| chol | Serum cholesterol (mg/dl) |
-| fbs | Fasting blood sugar > 120 mg/dl (1=true, 0=false) |
-| restecg | Resting electrocardiographic results (0-2) |
-| thalach | Maximum heart rate achieved |
-| exang | Exercise-induced angina (1=yes, 0=no) |
-| oldpeak | ST depression induced by exercise |
-| slope | Slope of peak exercise ST segment (1-3) |
-| ca | Number of major vessels colored by fluoroscopy (0-3) |
-| thal | Thalassemia (3=normal, 6=fixed defect, 7=reversible defect) |
+
+| Feature  | Description                                                 |
+| -------- | ----------------------------------------------------------- |
+| age      | Age in years                                                |
+| sex      | Gender (1=male, 0=female)                                   |
+| cp       | Chest pain type (1-4)                                       |
+| trestbps | Resting blood pressure (mm Hg)                              |
+| chol     | Serum cholesterol (mg/dl)                                   |
+| fbs      | Fasting blood sugar > 120 mg/dl (1=true, 0=false)           |
+| restecg  | Resting electrocardiographic results (0-2)                  |
+| thalach  | Maximum heart rate achieved                                 |
+| exang    | Exercise-induced angina (1=yes, 0=no)                       |
+| oldpeak  | ST depression induced by exercise                           |
+| slope    | Slope of peak exercise ST segment (1-3)                     |
+| ca       | Number of major vessels colored by fluoroscopy (0-3)        |
+| thal     | Thalassemia (3=normal, 6=fixed defect, 7=reversible defect) |
 
 ---
 
 ## 🤖 Algorithm Components
 
 ### 1. **Logistic Regression** - Member 1
+
 - **Type**: Supervised Learning (Baseline)
 - **Purpose**: Binary classification (disease / no disease)
 - **Key Task**: Establish baseline model performance
@@ -55,6 +57,7 @@ This is a machine learning project that predicts heart disease risk and segments
 - **Notebook**: `notebooks/01_logistic_regression_analysis.ipynb`
 
 ### 2. **Random Forest** - Member 2
+
 - **Type**: Supervised Learning (Ensemble)
 - **Purpose**: Improved prediction with feature importance analysis
 - **Key Task**: Identify most influential cardiac indicators
@@ -62,6 +65,7 @@ This is a machine learning project that predicts heart disease risk and segments
 - **File**: `src/02_random_forest.py`
 
 ### 3. **Support Vector Machine (SVM)** - Member 3
+
 - **Type**: Supervised Learning (Kernel Methods)
 - **Purpose**: Classification with multiple kernel options
 - **Kernels**: Linear, RBF, Polynomial
@@ -69,6 +73,7 @@ This is a machine learning project that predicts heart disease risk and segments
 - **File**: `src/03_svm_classification.ipynb`
 
 ### 4. **K-Means Clustering** - Member 4
+
 - **Type**: Unsupervised Learning
 - **Purpose**: Patient risk segmentation
 - **Key Task**: Identify natural patient subgroups
@@ -134,10 +139,15 @@ heart-disease-prediction/
 │   │   ├── cv_scores.png
 │   │   ├── top5_features_boxplot.png
 │   │   └── summary_report.txt
-│   ├── svm/                           # Member 3 outputs
+│   ├── svm_classification/                           # Member 3 outputs
+│   │   ├── confusion_matrix.csv
 │   │   ├── confusion_matrix.png
 │   │   ├── roc_curve.png
-│   │   └── summary_report.txt
+│   │   ├── summary_report.txt
+│   │   └── svm_predictions.csv
+│   │
+│   │
+│   │
 │   └── kmeans/                        # Member 4 outputs
 │       ├── cluster_visualization.png
 │       ├── elbow_curve.png
@@ -146,18 +156,18 @@ heart-disease-prediction/
 └── README.md
 ```
 
-
-
 ---
 
 ## 🚀 Installation & Setup
 
 ### Prerequisites
+
 - Python 3.8 or higher
 - pip or conda package manager
 - Git
 
 ### Step 1: Clone Repository
+
 ```bash
 git clone https://github.com/Yenura/heart-disease-prediction.git
 cd heart-disease-prediction
@@ -166,10 +176,9 @@ cd heart-disease-prediction
 ## Member 1 Contribution
 
 This contribution includes the Logistic Regression pipeline for heart disease prediction:
+
 - `notebooks/01_logistic_regression_analysis.ipynb` for analysis, training, and evaluation.
 - `src/data_preprocessing.py` for dataset loading, cleaning, type conversion, missing value handling, and binary target conversion.
 - `src/logistic_regression_model.py` for scaling and model training.
 - `src/evaluation.py` for metrics, confusion matrix, ROC curve, and result persistence.
 - `results/` for saved logistic regression outputs.
-
-
