@@ -6,7 +6,7 @@ This is a machine learning project that predicts heart disease risk and segments
 
 **Dataset**: UCI Heart Disease Dataset (Real-world clinical data)
 
----check
+---
 
 ## 🎯 Project Objectives
 
@@ -117,13 +117,13 @@ heart-disease-prediction/
 │   ├── logistic_regression_model.py    # Logistic Regression training for Member 1
 │   ├── evaluation.py                  # Evaluation utilities for Member 1
 │   ├── 02_random_forest.py            # Member 2 — Random Forest ✅
-│   ├── 03_svm_classification.py       # Member 3 — Support Vector Machine
+│   ├── 03_svm_classification.ipynb    # Member 3 — Support Vector Machine
 │   └── 04_kmeans_clustering.py        # Member 4 — K-Means Clustering
 │
 ├── models/                            # Saved trained models
 │   ├── logistic_regression_model.pkl  # Member 1 model
 │   ├── random_forest_model.pkl        # Member 2 model ✅
-│   ├── svm_model.pkl                  # Member 3 model
+│   ├── svm_heart_disease_model.joblib # Member 3 model
 │   └── kmeans_model.pkl               # Member 4 model
 │
 ├── results/                           # Generated outputs for Logistic Regression
@@ -149,9 +149,14 @@ heart-disease-prediction/
 │   │
 │   │
 │   └── kmeans/                        # Member 4 outputs
-│       ├── cluster_visualization.png
-│       ├── elbow_curve.png
-│       └── summary_report.txt
+│       ├── 01_elbow_plot.png
+│       ├── 02_silhouette_analysis.png
+│       ├── 03_pca_scatter_3d.png
+│       ├── 04_cluster_heatmap.png
+│       ├── 05_cluster_summary.csv
+│       ├── clustered_patients.csv
+│       ├── pca_transformed_data.csv
+│       └── ANALYSIS_REPORT.txt
 │
 └── README.md
 ```

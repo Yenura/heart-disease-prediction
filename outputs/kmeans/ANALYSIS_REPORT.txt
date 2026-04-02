@@ -107,5 +107,5 @@ METHODOLOGY NOTES
 
 ======================================================================
 Analysis completed successfully!
-Generated outputs are saved in: C:\Users\kthis_g\OneDrive\Documents\GitHub\heart-disease-prediction\outputs\kmeans
+Generated outputs are saved in: C:\Users\thari\Desktop\My Project\ML\heart-disease-prediction\outputs\kmeans
 ======================================================================

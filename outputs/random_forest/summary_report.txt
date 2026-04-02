@@ -3,26 +3,26 @@
 ============================================================
   Dataset        : processed.cleveland.data
   Train / Test   : 242 / 61 samples
-  Best Parameters: {'max_depth': 5, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 100}
-  CV Accuracy    : 0.8343 ± 0.0566
-  Test Accuracy  : 0.9016  (90.16%)
+  Best Parameters: {'max_depth': 5, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+  CV Accuracy    : 0.8180 ± 0.0462
+  Test Accuracy  : 0.8689  (86.89%)
   ROC-AUC Score  : 0.9556
 
   Feature Importance Ranking:
 ------------------------------------------------------------
-   1. thal       | Thalassemia Type                       | 0.1714
-   2. cp         | Chest Pain Type                        | 0.1449
-   3. thalach    | Max Heart Rate Achieved                | 0.1251
-   4. ca         | Number of Major Vessels (Fluoroscopy)  | 0.1155
-   5. oldpeak    | ST Depression (Exercise vs Rest)       | 0.0896
-   6. age        | Age (years)                            | 0.0617
-   7. chol       | Serum Cholesterol (mg/dl)              | 0.0596
-   8. trestbps   | Resting Blood Pressure (mm Hg)         | 0.0583
-   9. exang      | Exercise Induced Angina                | 0.0549
-  10. slope      | Slope of Peak Exercise ST Segment      | 0.0543
-  11. sex        | Sex (1=Male, 0=Female)                 | 0.0427
-  12. restecg    | Resting ECG Results                    | 0.0152
-  13. fbs        | Fasting Blood Sugar > 120 mg/dl        | 0.0067
+   1. thal       | Thalassemia Type                       | 0.1997
+   2. cp         | Chest Pain Type                        | 0.1347
+   3. ca         | Number of Major Vessels (Fluoroscopy)  | 0.1218
+   4. thalach    | Max Heart Rate Achieved                | 0.1136
+   5. oldpeak    | ST Depression (Exercise vs Rest)       | 0.0900
+   6. age        | Age (years)                            | 0.0646
+   7. exang      | Exercise Induced Angina                | 0.0577
+   8. chol       | Serum Cholesterol (mg/dl)              | 0.0572
+   9. trestbps   | Resting Blood Pressure (mm Hg)         | 0.0545
+  10. slope      | Slope of Peak Exercise ST Segment      | 0.0462
+  11. sex        | Sex (1=Male, 0=Female)                 | 0.0392
+  12. restecg    | Resting ECG Results                    | 0.0140
+  13. fbs        | Fasting Blood Sugar > 120 mg/dl        | 0.0069
 ------------------------------------------------------------
 
   Outputs:
