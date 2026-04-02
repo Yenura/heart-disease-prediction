@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
+<<<<<<< HEAD
 from sklearn.metrics import (
     accuracy_score,
     classification_report,
@@ -15,8 +16,33 @@ from sklearn.metrics import (
     roc_auc_score,
     roc_curve,
 )
+=======
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+    roc_curve,
+)
+import matplotlib.pyplot as plt
+
+COLUMN_NAMES = [
+    'age', 'sex', 'cp', 'trestbps', 'chol',
+    'fbs', 'restecg', 'thalach', 'exang',
+    'oldpeak', 'slope', 'ca', 'thal', 'target'
+]
+
+DEFAULT_DATA_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    'Data_set',
+    'processed.cleveland.data'
+)
 
 # Default column names for the Cleveland heart disease dataset.
 COLUMN_NAMES = [
@@ -25,6 +51,7 @@ COLUMN_NAMES = [
     'oldpeak', 'slope', 'ca', 'thal', 'target'
 ]
 
+<<<<<<< HEAD
 # Default dataset path relative to the project root.
 DEFAULT_DATA_PATH = os.path.join(
     os.path.dirname(os.path.dirname(__file__)),
@@ -38,11 +65,25 @@ def load_data(data_path: Optional[str] = None) -> pd.DataFrame:
     if data_path is None:
         data_path = DEFAULT_DATA_PATH
 
+    # Read the raw dataset into a pandas DataFrame.
     return pd.read_csv(data_path, names=COLUMN_NAMES, na_values='?', encoding='latin-1')
 
 
 def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     """Clean raw dataset, impute missing values, and binarize the target."""
+=======
+def load_data(data_path: Optional[str] = None) -> pd.DataFrame:
+    """Load the Cleveland heart disease dataset."""
+    if data_path is None:
+        data_path = DEFAULT_DATA_PATH
+
+    df = pd.read_csv(data_path, names=COLUMN_NAMES, na_values='?', encoding='latin-1')
+    return df
+
+
+def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
+    """Clean data and convert the target into binary labels."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     df = df.copy()
     df.replace('?', np.nan, inplace=True)
 
@@ -55,19 +96,31 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_target(df: pd.DataFrame) -> pd.Series:
+<<<<<<< HEAD
     """Return the class distribution for the binary target."""
+=======
+    """Return the distribution of the binary target column."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     return df['target'].value_counts().sort_index()
 
 
 def split_features_target(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
+<<<<<<< HEAD
     """Split the cleaned dataset into features and target label."""
+=======
+    """Separate features and labels for training."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     X = df.drop(columns=['target'])
     y = df['target']
     return X, y
 
 
 def scale_train_test(X_train: pd.DataFrame, X_test: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, StandardScaler]:
+<<<<<<< HEAD
     """Fit StandardScaler on training data and transform both splits."""
+=======
+    """Fit a scaler on training data and transform train/test splits."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
@@ -81,14 +134,22 @@ def train_logistic_regression(
     max_iter: int = 1000,
     random_state: int = 42
 ) -> LogisticRegression:
+<<<<<<< HEAD
     """Train a LogisticRegression classifier on the given data."""
+=======
+    """Train a logistic regression classifier."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     model = LogisticRegression(solver=solver, max_iter=max_iter, random_state=random_state)
     model.fit(X_train, y_train)
     return model
 
 
 def get_sorted_coefficients(model: LogisticRegression, feature_names: List[str]) -> pd.DataFrame:
+<<<<<<< HEAD
     """Return a dataframe of coefficients sorted by absolute importance."""
+=======
+    """Return feature coefficients sorted by absolute importance."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     coefficients = model.coef_.flatten()
     coef_df = pd.DataFrame({
         'feature': feature_names,
@@ -108,7 +169,11 @@ def build_logistic_regression_pipeline(
     max_iter: int = 1000,
     stratify: Optional[pd.Series] = None
 ) -> Tuple[LogisticRegression, np.ndarray, np.ndarray, pd.Series, pd.Series, StandardScaler]:
+<<<<<<< HEAD
     """Split data, scale features, and train a logistic regression model."""
+=======
+    """Split, scale, and train a logistic regression model in one step."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     X_train, X_test, y_train, y_test = train_test_split(
         X,
         y,
@@ -128,28 +193,49 @@ def build_logistic_regression_pipeline(
 
 
 def evaluate_model(model, X_test: pd.DataFrame, y_test: pd.Series) -> Dict[str, object]:
+<<<<<<< HEAD
     """Compute standard binary classification evaluation metrics."""
     y_pred = model.predict(X_test)
     y_score = model.predict_proba(X_test)[:, 1]
 
     return {
+=======
+    """Compute evaluation metrics for a binary classifier."""
+    y_pred = model.predict(X_test)
+    y_score = model.predict_proba(X_test)[:, 1]
+
+    metrics = {
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
         'accuracy': accuracy_score(y_test, y_pred),
         'precision': precision_score(y_test, y_pred, zero_division=0),
         'recall': recall_score(y_test, y_pred, zero_division=0),
         'f1_score': f1_score(y_test, y_pred, zero_division=0),
         'roc_auc': roc_auc_score(y_test, y_score),
         'confusion_matrix': confusion_matrix(y_test, y_pred),
+<<<<<<< HEAD
         'classification_report': classification_report(y_test, y_pred, digits=4),
     }
 
 
 def _ensure_folder(file_path: str):
     """Create parent directories for a path if they do not exist."""
+=======
+        'classification_report': classification_report(y_test, y_pred, digits=4)
+    }
+    return metrics
+
+
+def _ensure_folder(file_path: str):
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
 
 def save_metrics(metrics: Dict[str, object], file_path: str):
+<<<<<<< HEAD
     """Save evaluation metrics and classification report to a text file."""
+=======
+    """Write evaluation metrics and classification report to a text file."""
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
     _ensure_folder(file_path)
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write('Logistic Regression Evaluation Metrics\n')
@@ -211,4 +297,8 @@ def plot_roc_curve(y_test: pd.Series, y_score: np.ndarray, save_path: Optional[s
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     print('This module contains all logistic regression preprocessing, training, and evaluation helpers.')
+=======
+    print('This module now contains all logistic regression preprocessing, training, and evaluation helpers.')
+>>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
