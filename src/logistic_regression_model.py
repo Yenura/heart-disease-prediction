@@ -1,3 +1,10 @@
+"""Logistic regression helpers for heart disease prediction.
+
+This module contains all data loading, preprocessing, model training,
+feature scaling, evaluation, and plotting utilities needed for logistic
+regression modeling without external helper modules.
+"""
+
 import os
 from typing import Dict, List, Optional, Tuple
 
@@ -36,18 +43,22 @@ def load_data(data_path: Optional[str] = None) -> pd.DataFrame:
     if data_path is None:
         data_path = DEFAULT_DATA_PATH
 
-    # Read the dataset into a pandas DataFrame.
+    # Use the default dataset location when no path is provided.
+    # Read the dataset into a pandas DataFrame with the expected column names.
     return pd.read_csv(data_path, names=COLUMN_NAMES, na_values='?', encoding='latin-1')
 
 
 def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     """Clean raw dataset, impute missing values, and binarize the target."""
     df = df.copy()
+    # Replace placeholder missing values with NaN so numeric conversion works.
     df.replace('?', np.nan, inplace=True)
 
+    # Convert every column to numeric data, coercing invalid values to NaN.
     for column in COLUMN_NAMES:
         df[column] = pd.to_numeric(df[column], errors='coerce')
 
+    # Use column medians to fill any remaining missing values.
     df.fillna(df.median(numeric_only=True), inplace=True)
     df['target'] = df['target'].apply(lambda value: 0 if value == 0 else 1)
     return df
@@ -108,6 +119,7 @@ def build_logistic_regression_pipeline(
     stratify: Optional[pd.Series] = None
 ) -> Tuple[LogisticRegression, np.ndarray, np.ndarray, pd.Series, pd.Series, StandardScaler]:
     """Split data, scale features, and train a logistic regression model."""
+    # Split dataset into training and test sets with optional stratification.
     X_train, X_test, y_train, y_test = train_test_split(
         X,
         y,
@@ -127,49 +139,31 @@ def build_logistic_regression_pipeline(
 
 
 def evaluate_model(model, X_test: pd.DataFrame, y_test: pd.Series) -> Dict[str, object]:
-<<<<<<< HEAD
     """Compute standard binary classification evaluation metrics."""
+
+    # Predict labels and probabilities for the test set.
     y_pred = model.predict(X_test)
     y_score = model.predict_proba(X_test)[:, 1]
 
+    # Return every evaluation metric needed for analysis and reporting.
     return {
-=======
-    """Compute evaluation metrics for a binary classifier."""
-    y_pred = model.predict(X_test)
-    y_score = model.predict_proba(X_test)[:, 1]
-
-    metrics = {
->>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
         'accuracy': accuracy_score(y_test, y_pred),
         'precision': precision_score(y_test, y_pred, zero_division=0),
         'recall': recall_score(y_test, y_pred, zero_division=0),
         'f1_score': f1_score(y_test, y_pred, zero_division=0),
         'roc_auc': roc_auc_score(y_test, y_score),
         'confusion_matrix': confusion_matrix(y_test, y_pred),
-<<<<<<< HEAD
         'classification_report': classification_report(y_test, y_pred, digits=4),
     }
 
 
 def _ensure_folder(file_path: str):
-    """Create parent directories for a path if they do not exist."""
-=======
-        'classification_report': classification_report(y_test, y_pred, digits=4)
-    }
-    return metrics
-
-
-def _ensure_folder(file_path: str):
->>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
+    """Create parent directories for a file path if they do not exist."""
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
 
 def save_metrics(metrics: Dict[str, object], file_path: str):
-<<<<<<< HEAD
-    """Save evaluation metrics and classification report to a text file."""
-=======
-    """Write evaluation metrics and classification report to a text file."""
->>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
+    """Save evaluation metrics and the classification report to a text file."""
     _ensure_folder(file_path)
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write('Logistic Regression Evaluation Metrics\n')
@@ -201,6 +195,7 @@ def plot_confusion_matrix(confusion_matrix_data: np.ndarray, save_path: Optional
 
     plt.tight_layout()
     if save_path:
+        # Ensure output directory exists before saving the figure.
         _ensure_folder(save_path)
         plt.savefig(save_path, dpi=200)
     plt.close(fig)
@@ -231,8 +226,5 @@ def plot_roc_curve(y_test: pd.Series, y_score: np.ndarray, save_path: Optional[s
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     print('This module contains all logistic regression preprocessing, training, and evaluation helpers.')
-=======
-    print('This module now contains all logistic regression preprocessing, training, and evaluation helpers.')
->>>>>>> 22d0e86389bff860ffc4bca2eb3eb9f23cfe6ca0
+
